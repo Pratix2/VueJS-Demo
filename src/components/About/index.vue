@@ -1,5 +1,15 @@
 <template>
   <div class="about">
+    <div class="navBar">
+        <ul class="navBarList">
+            <li class="listItem">
+                <a href="/">Home</a>
+            </li>
+            <li class="listItem">
+                <a href="/#/about">Yelp API</a>
+            </li>  
+        </ul>
+    </div>
     <h1>Yelp API</h1>
     <p>We can find businesses all over the world!</p>
     <div class="formBox">
@@ -19,20 +29,24 @@
                             <div class="text">Limit</div>
                             <input v-model="query.limit" class="inputs" type="text" placeholder="Limit" />
                         </div>
-                        <div class="col textCol col2">
-                            <div class="text">Price</div>
-                            <div class="select">
-                                <select v-model="query.price" class="custom-select">
-                                    <option selected>Select...</option>
-                                    <option value="1">$</option>
-                                    <option value="2">$$</option>
-                                    <option value="3">$$$</option>
-                                    <option value="4">$$$$</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col submitCol">
-                            <button class="button" type="submit">Search</button>
+                        <div class="col textCol col2 lastCol">
+                                <div class="priceCol">
+                                    <div class="text">Price</div>
+                                    <div class="select">
+                                        <select v-model="query.price" class="custom-select">
+                                            <option selected>Select...</option>
+                                            <option value="1">$</option>
+                                            <option value="2">$$</option>
+                                            <option value="3">$$$</option>
+                                            <option value="4">$$$$</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="buttonCol">
+                                    <div class="buttonBox">
+                                        <button class="button" type="submit">Search</button>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -58,6 +72,39 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.navBar {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+}
+
+.navBarList {
+    list-style-type: none;
+    text-align: left;
+    padding-top: 10px;
+}
+
+.listItem {
+    display: inline;
+    margin-right: 20px;
+}
+
+a:link {
+    color: rgb(44, 62, 80);
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgb(44, 62, 80);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    border-bottom: solid 1px rgb(44, 62, 80);
+}
+
 .formBox {
     width: 100%;
     padding-top: 20px;
@@ -67,6 +114,10 @@
     border: solid 3px rgb(236, 238, 239);
 }
 
+.col {
+    text-align: left;
+}
+
 .textcol {
     display: flex;
     flex-flow: column;
@@ -74,7 +125,21 @@
     justify-content: space-between;
 }
 
-.submitCol {
+.lastCol {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.priceCol {
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    justify-content: space-between; 
+}
+
+.buttonCol {
     display: flex;
     flex-flow: column;
     flex-wrap: nowrap;
@@ -119,6 +184,7 @@ p {
 
 .select{
     text-align: left;
+    padding-bottom: 5px;
 }
 
 .inputs:focus, .button:focus {
@@ -126,9 +192,7 @@ p {
 }
 
 .button {
-    font-size: 18px;
-    margin-right: 40px;
-    margin-left: 40px;  
+    font-size: 15px; 
     padding: 10px;
     background-color: rgb(44, 62, 80);
     border: solid 1px rgb(44, 62, 80);
@@ -151,6 +215,7 @@ th {
     font-size: 18px;
     text-align: center;
     border-top: solid 0px rgba(0,0,0,0);
+    padding-top: 36px;
 }
 
 td { 
