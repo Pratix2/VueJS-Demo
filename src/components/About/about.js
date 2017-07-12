@@ -6,6 +6,7 @@ export default {
   data() {
     return {
       businesses: [],
+      isLoading: false,
       query: {
         term: '',
         location: '',
@@ -16,21 +17,29 @@ export default {
   },
   methods: {
     onSearch() {
+      const myElement = document.querySelector('.btn')
       if (!this.query.location) {
-        alert('You must provide a location')
+        myElement.style.display = 'inline'
       } else {
+        myElement.style.display = 'none'
         this.fetchYelpStuff(this.query)
       }
     },
+    onPopover(e) {
+      $(e.target).popover('show')
+    },
     fetchYelpStuff(query) {
+      this.isLoading = true
       const stringQuery = queryString.stringify(query)
       axios.get(`http://localhost:3000/yelp-api?${stringQuery}`, { headers: { Accept: 'application/json' } })
       .then(response => response.data)
       .then((res) => {
         this.businesses = res.businesses
+        this.isLoading = false
       })
       .catch((err) => {
         console.error(err)
+        this.isLoading = false
       })
     },
   },
